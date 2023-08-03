@@ -11,7 +11,7 @@ export default function HomePage() {
 
       <View style={styles.container}>
         <Text>Open up app/_layout.tsx to start working on your app!</Text>
-        <Button />
+        <Button variant="primary">Getting Started</Button>
         <StatusBar style="auto" />
       </View>
     </>
