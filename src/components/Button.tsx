@@ -1,4 +1,8 @@
-import { Pressable, PressableProps, Text, TextStyle, ViewStyle, StyleProp } from 'react-native';
+import { Pressable, PressableProps, TextStyle, ViewStyle, StyleProp } from 'react-native';
+
+import { Text } from './Text';
+
+import { colors } from '@/theme/colors';
 
 type Variants = keyof typeof viewVariants;
 
@@ -36,6 +40,7 @@ export function Button({ variant = 'primary', style, children, ...props }: Butto
       {...props}>
       {({ pressed, hovered, focused }) => (
         <Text
+          variant="subHeading2"
           style={[
             textVariants[variant],
             (!!pressed || !!hovered) && pressedTextVariants[variant],
@@ -59,25 +64,22 @@ const baseViewStyle: ViewStyle = {
 };
 
 const baseTextStyle: TextStyle = {
-  fontSize: 16,
-  lineHeight: 28,
   textAlign: 'center',
   flexShrink: 1,
   flexGrow: 0,
-  fontWeight: '600',
 };
 
 const viewVariants = {
   primary: [
     baseViewStyle,
     {
-      backgroundColor: '#002DE3',
+      backgroundColor: colors.palette.brandColorDefault,
     },
   ] as StyleProp<ViewStyle>,
   secondary: [
     baseViewStyle,
     {
-      borderColor: '#002DE3',
+      borderColor: colors.palette.brandColorDefault,
       borderWidth: 2,
     },
   ] as StyleProp<ViewStyle>,
@@ -88,43 +90,47 @@ const textVariants: Record<Variants, StyleProp<TextStyle>> = {
   primary: [
     baseTextStyle,
     {
-      color: '#F7F7FC',
+      color: colors.palette.neutralOffWhite,
     },
   ],
   secondary: [
     baseTextStyle,
     {
-      color: '#002DE3',
+      color: colors.palette.brandColorDefault,
     },
   ],
   ghost: [
     baseTextStyle,
     {
-      color: '#002DE3',
+      color: colors.palette.brandColorDefault,
     },
   ],
 };
 
 const pressedViewVariants: Record<Variants, StyleProp<ViewStyle>> = {
-  primary: { backgroundColor: '#001A83' },
-  secondary: { borderColor: '#001A83' },
+  primary: { backgroundColor: colors.palette.brandColorDark },
+  secondary: { borderColor: colors.palette.brandColorDark },
   ghost: {},
 };
 
 const pressedTextVariants: Record<Variants, StyleProp<TextStyle>> = {
   primary: {},
-  secondary: { color: '#001A83' },
-  ghost: { color: '#001A83' },
+  secondary: { color: colors.palette.brandColorDark },
+  ghost: { color: colors.palette.brandColorDark },
 };
 
 const focusedViewVariants: Record<Variants, StyleProp<ViewStyle>> = {
-  primary: { borderColor: '#D2D5F9', borderWidth: 8 },
-  secondary: { backgroundColor: '#F7F7FC', borderWidth: 4 },
-  ghost: { backgroundColor: '#EDEDED', borderColor: '#F7F7FC', borderWidth: 8 },
+  primary: { borderColor: colors.palette.brandColorBackground, borderWidth: 8 },
+  secondary: { backgroundColor: colors.palette.neutralOffWhite, borderWidth: 4 },
+  ghost: {
+    backgroundColor: colors.palette.neutralLine,
+    borderColor: colors.palette.neutralOffWhite,
+    borderWidth: 8,
+  },
 };
 
 const focusedTextVariants: Record<Variants, StyleProp<TextStyle>> = {
   primary: {},
-  secondary: { color: '#001A83' },
-  ghost: { color: '#001A83' },
+  secondary: { color: colors.palette.brandColorDark },
+  ghost: { color: colors.palette.brandColorDark },
 };

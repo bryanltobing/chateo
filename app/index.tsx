@@ -1,39 +1,23 @@
-import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
 
 export default function HomePage() {
-  const [loaded, error] = useFonts({
-    'Mulish-Regular': require('../assets/fonts/Mulish-Regular.ttf'),
-    'Mulish-SemiBold': require('../assets/fonts/Mulish-SemiBold.ttf'),
-    'Mulish-Bold': require('../assets/fonts/Mulish-Bold.ttf'),
-  });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  // TODO: handle this
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <>
       <Stack.Screen options={{ title: 'Urlang' }} />
 
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          { paddingBottom: safeAreaInsets.bottom === 0 ? 24 : safeAreaInsets.bottom },
+        ]}>
+        <View />
         <Text style={{ fontFamily: 'Mulish-SemiBold' }}>
           Open up app/_layout.tsx to start working on your app!
         </Text>
@@ -49,6 +33,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
 });
