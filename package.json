@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "lint": "echo \"Running eslint check\" && eslint --fix .",
     "prettify": "prettier --write 'app/**/*.{ts,tsx}' 'src/**/*.{ts,tsx}'",
-    "tsc": "tsc",
+    "typecheck": "tsc",
     "prepare": "husky install"
   },
   "dependencies": {
