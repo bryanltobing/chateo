@@ -1,10 +1,12 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
+import { SplashScreen, Stack, useNavigation } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
+import { Icons } from '@/components/ui/Icon';
 import { colors } from '@/theme/colors';
+import { typography } from '@/theme/typography';
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -14,6 +16,8 @@ export default function RootLayout() {
   });
 
   const colorScheme = useColorScheme();
+
+  const { goBack } = useNavigation();
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   // TODO: handle this
@@ -44,13 +48,23 @@ export default function RootLayout() {
     >
       <Stack
         screenOptions={{
-          headerStyle: {
-            backgroundColor: colors.palette.brandColorDefault,
-          },
-          headerTintColor: colors.palette.neutralOffWhite,
+          headerTransparent: true,
+          headerTitleAlign: 'left',
+          headerTintColor: colors.palette.neutralActive,
           headerTitleStyle: {
-            fontWeight: 'bold',
+            fontFamily: typography.primary.semiBold,
+            fontSize: 18,
           },
+
+          headerLeft: ({ tintColor, canGoBack }) => (
+            <Icons
+              name="Chevron_Left"
+              size={24}
+              color={tintColor}
+              onPress={canGoBack ? goBack : undefined}
+              style={{ marginRight: 8 }}
+            />
+          ),
         }}
       />
     </ThemeProvider>

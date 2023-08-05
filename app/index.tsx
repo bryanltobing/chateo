@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -33,7 +33,9 @@ export default function HomePage() {
 
         <View style={{ gap: 18 }}>
           <Text style={{ textAlign: 'center' }}>Terms & Privacy Policy</Text>
-          <Button variant="primary">Getting Started</Button>
+          <Link href="/auth" asChild>
+            <Button variant="primary">Getting Started</Button>
+          </Link>
         </View>
         <StatusBar style="auto" />
       </View>
