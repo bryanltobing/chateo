@@ -41,7 +41,8 @@ export default function RootLayout() {
               ...DefaultTheme,
               colors: { ...DefaultTheme.colors, background: colors.palette.neutralWhite },
             }
-      }>
+      }
+    >
       <Stack
         screenOptions={{
           headerStyle: {

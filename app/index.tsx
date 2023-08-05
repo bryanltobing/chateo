@@ -22,7 +22,8 @@ export default function HomePage() {
             flex: 1,
             paddingHorizontal: 24,
           },
-        ]}>
+        ]}
+      >
         <ScrollView bounces={false} contentContainerStyle={{ gap: 42 }}>
           <HomeIllustration style={{ marginLeft: 'auto', marginRight: 'auto' }} />
           <Text variant="heading2" style={{ textAlign: 'center' }}>
