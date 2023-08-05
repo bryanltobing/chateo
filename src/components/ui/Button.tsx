@@ -1,4 +1,5 @@
-import { Pressable, PressableProps, TextStyle, ViewStyle, StyleProp } from 'react-native';
+import { Ref, forwardRef } from 'react';
+import { Pressable, PressableProps, TextStyle, ViewStyle, StyleProp, View } from 'react-native';
 
 import { Text } from './Text';
 
@@ -25,35 +26,40 @@ export type ButtonProps = {
 /**
  * A component that allows users to take actions and make choices.
  * Wraps the Text component with a Pressable component.
+ * @note
+ * If you wrap this within the Expo Router's Link component, you will need to pass the asChild prop to Link.
  */
-export function Button({ variant = 'primary', style, children, ...props }: ButtonProps) {
-  return (
-    <Pressable
-      style={({ pressed, hovered, focused }) => [
-        viewVariants[variant],
-        style,
-        (!!pressed || !!hovered) && pressedViewVariants[variant],
-        !!focused && focusedViewVariants[variant],
-        !!props.disabled && { opacity: 0.5 },
-      ]}
-      accessibilityRole="button"
-      {...props}
-    >
-      {({ pressed, hovered, focused }) => (
-        <Text
-          variant="subHeading2"
-          style={[
-            textVariants[variant],
-            (!!pressed || !!hovered) && pressedTextVariants[variant],
-            !!focused && focusedTextVariants[variant],
-          ]}
-        >
-          {children}
-        </Text>
-      )}
-    </Pressable>
-  );
-}
+export const Button = forwardRef(
+  ({ variant = 'primary', style, children, ...props }: ButtonProps, ref: Ref<View>) => {
+    return (
+      <Pressable
+        style={({ pressed, hovered, focused }) => [
+          viewVariants[variant],
+          style,
+          (!!pressed || !!hovered) && pressedViewVariants[variant],
+          !!focused && focusedViewVariants[variant],
+          !!props.disabled && { opacity: 0.5 },
+        ]}
+        accessibilityRole="button"
+        ref={ref}
+        {...props}
+      >
+        {({ pressed, hovered, focused }) => (
+          <Text
+            variant="subHeading2"
+            style={[
+              textVariants[variant],
+              (!!pressed || !!hovered) && pressedTextVariants[variant],
+              !!focused && focusedTextVariants[variant],
+            ]}
+          >
+            {children}
+          </Text>
+        )}
+      </Pressable>
+    );
+  }
+);
 
 const baseViewStyle: ViewStyle = {
   flexDirection: 'row',
