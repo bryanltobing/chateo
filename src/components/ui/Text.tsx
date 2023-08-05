@@ -7,6 +7,7 @@ type Variants = keyof typeof textVariants;
 export type TextProps = {
   /**
    * One of the different types of text variants.
+   * @default 'body1'
    */
   variant?: Variants;
   /**

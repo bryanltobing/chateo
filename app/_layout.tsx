@@ -1,10 +1,11 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
 import { colors } from '@/theme/colors';
+import { typography } from '@/theme/typography';
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -35,7 +36,11 @@ export default function RootLayout() {
     <ThemeProvider
       value={
         colorScheme === 'dark'
-          ? DarkTheme
+          ? // TODO: Need to update when handling dark mode
+            {
+              ...DefaultTheme,
+              colors: { ...DefaultTheme.colors, background: colors.palette.neutralWhite },
+            }
           : {
               ...DefaultTheme,
               colors: { ...DefaultTheme.colors, background: colors.palette.neutralWhite },
@@ -44,12 +49,12 @@ export default function RootLayout() {
     >
       <Stack
         screenOptions={{
-          headerStyle: {
-            backgroundColor: colors.palette.brandColorDefault,
-          },
-          headerTintColor: colors.palette.neutralOffWhite,
+          headerTransparent: true,
+          headerTitleAlign: 'left',
+          headerTintColor: colors.palette.neutralActive,
           headerTitleStyle: {
-            fontWeight: 'bold',
+            fontFamily: typography.primary.semiBold,
+            fontSize: 18,
           },
         }}
       />
