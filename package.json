@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "lint": "echo \"Running eslint check\" && eslint --fix .",
     "prettify": "prettier --write 'app/**/*.{ts,tsx}' 'src/**/*.{ts,tsx}'",
-    "tsc": "tsc"
+    "typecheck": "tsc",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.7",
@@ -30,13 +31,19 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@types/lint-staged": "^13.2.0",
+    "@types/prettier": "^3.0.0",
     "@types/react": "~18.2.14",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-config-universe": "^11.3.0",
     "eslint-plugin-prettier": "5.0.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^3.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.1",
     "typescript": "^5.1.3"
   },
   "private": true
