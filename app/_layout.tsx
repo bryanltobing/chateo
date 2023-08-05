@@ -1,10 +1,9 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack, useNavigation } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
-import { Icons } from '@/components/ui/Icon';
 import { colors } from '@/theme/colors';
 import { typography } from '@/theme/typography';
 
@@ -16,8 +15,6 @@ export default function RootLayout() {
   });
 
   const colorScheme = useColorScheme();
-
-  const { goBack } = useNavigation();
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   // TODO: handle this
@@ -39,7 +36,11 @@ export default function RootLayout() {
     <ThemeProvider
       value={
         colorScheme === 'dark'
-          ? DarkTheme
+          ? // TODO: Need to update when handling dark mode
+            {
+              ...DefaultTheme,
+              colors: { ...DefaultTheme.colors, background: colors.palette.neutralWhite },
+            }
           : {
               ...DefaultTheme,
               colors: { ...DefaultTheme.colors, background: colors.palette.neutralWhite },
@@ -55,16 +56,6 @@ export default function RootLayout() {
             fontFamily: typography.primary.semiBold,
             fontSize: 18,
           },
-
-          headerLeft: ({ tintColor, canGoBack }) => (
-            <Icons
-              name="Chevron_Left"
-              size={24}
-              color={tintColor}
-              onPress={canGoBack ? goBack : undefined}
-              style={{ marginRight: 8 }}
-            />
-          ),
         }}
       />
     </ThemeProvider>
