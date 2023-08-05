@@ -6,6 +6,7 @@ module.exports = {
     'universe/web',
     'plugin:react-hooks/recommended',
     'universe/shared/typescript-analysis',
+    'prettier',
   ],
   overrides: [
     {
@@ -15,4 +16,7 @@ module.exports = {
       },
     },
   ],
+  rules: {
+    '@typescript-eslint/no-unused-vars': ['error', { vars: 'all', argsIgnorePattern: '^_' }],
+  },
 };

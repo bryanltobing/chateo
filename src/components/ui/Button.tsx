@@ -37,7 +37,8 @@ export function Button({ variant = 'primary', style, children, ...props }: Butto
         !!props.disabled && { opacity: 0.5 },
       ]}
       accessibilityRole="button"
-      {...props}>
+      {...props}
+    >
       {({ pressed, hovered, focused }) => (
         <Text
           variant="subHeading2"
@@ -45,7 +46,8 @@ export function Button({ variant = 'primary', style, children, ...props }: Butto
             textVariants[variant],
             (!!pressed || !!hovered) && pressedTextVariants[variant],
             !!focused && focusedTextVariants[variant],
-          ]}>
+          ]}
+        >
           {children}
         </Text>
       )}
