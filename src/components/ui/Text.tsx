@@ -22,7 +22,7 @@ export type TextProps = {
 
 export function Text({ variant = 'body1', children, style, ...props }: TextProps) {
   return (
-    <RnText style={[textVariants[variant], style]} {...props}>
+    <RnText style={[baseStyle, textVariants[variant], style]} {...props}>
       {children}
     </RnText>
   );
@@ -33,13 +33,21 @@ const baseStyle: StyleProp<TextStyle> = [
 ];
 
 const textVariants = {
-  heading1: [baseStyle, { fontSize: 32 }] satisfies StyleProp<TextStyle>,
-  heading2: [baseStyle, { fontSize: 24 }] satisfies StyleProp<TextStyle>,
-  subHeading1: [baseStyle, { fontSize: 18, lineHeight: 30 }] satisfies StyleProp<TextStyle>,
-  subHeading2: [baseStyle, { fontSize: 16, lineHeight: 28 }] satisfies StyleProp<TextStyle>,
-  body1: [baseStyle, { fontSize: 14, lineHeight: 24 }] satisfies StyleProp<TextStyle>,
-  body2: [baseStyle, { fontSize: 14, lineHeight: 24 }] satisfies StyleProp<TextStyle>,
-  metadata1: [baseStyle, { fontSize: 12, lineHeight: 20 }] satisfies StyleProp<TextStyle>,
-  metadata2: [baseStyle, { fontSize: 10, lineHeight: 16 }] satisfies StyleProp<TextStyle>,
-  metadata3: [baseStyle, { fontSize: 10, lineHeight: 16 }] satisfies StyleProp<TextStyle>,
+  heading1: [{ fontSize: 32, fontFamily: typography.primary.bold }] satisfies StyleProp<TextStyle>,
+  heading2: [{ fontSize: 24, fontFamily: typography.primary.bold }] satisfies StyleProp<TextStyle>,
+  subHeading1: [{ fontSize: 18, lineHeight: 30 }] satisfies StyleProp<TextStyle>,
+  subHeading2: [{ fontSize: 16, lineHeight: 28 }] satisfies StyleProp<TextStyle>,
+  body1: [{ fontSize: 14, lineHeight: 24 }] satisfies StyleProp<TextStyle>,
+  body2: [
+    { fontSize: 14, lineHeight: 24, fontFamily: typography.primary.regular },
+  ] satisfies StyleProp<TextStyle>,
+  metadata1: [
+    { fontSize: 12, lineHeight: 20, fontFamily: typography.primary.regular },
+  ] satisfies StyleProp<TextStyle>,
+  metadata2: [
+    { fontSize: 10, lineHeight: 16, fontFamily: typography.primary.regular },
+  ] satisfies StyleProp<TextStyle>,
+  metadata3: [
+    { fontSize: 10, lineHeight: 16, fontFamily: typography.primary.semiBold },
+  ] satisfies StyleProp<TextStyle>,
 };
