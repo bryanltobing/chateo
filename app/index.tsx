@@ -1,11 +1,11 @@
-import { HomeIllustration } from 'assets/illustrations';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Button } from '@/components/Button';
-import { Text } from '@/components/Text';
+import { HomeIllustration } from '@/components/illustrations/HomeIllustration';
+import { Button } from '@/components/ui/Button';
+import { Text } from '@/components/ui/Text';
 
 export default function HomePage() {
   const safeAreaInsets = useSafeAreaInsets();
@@ -32,9 +32,7 @@ export default function HomePage() {
 
         <View style={{ gap: 18 }}>
           <Text style={{ textAlign: 'center' }}>Terms & Privacy Policy</Text>
-          <Button variant="primary" onPress={() => alert('test')}>
-            Getting Started
-          </Button>
+          <Button variant="primary">Getting Started</Button>
         </View>
         <StatusBar style="auto" />
       </View>
