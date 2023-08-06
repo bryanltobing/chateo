@@ -49,7 +49,6 @@ export default function RootLayout() {
     >
       <Stack
         screenOptions={{
-          headerTransparent: true,
           headerTitleAlign: 'left',
           headerTintColor: colors.palette.neutralActive,
           headerTitleStyle: {
@@ -57,8 +56,11 @@ export default function RootLayout() {
             fontSize: 18,
           },
           headerBackTitleVisible: false,
+          headerShadowVisible: false,
         }}
-      />
+      >
+        <Stack.Screen name="(modals)/phone-code" options={{ presentation: 'modal' }} />
+      </Stack>
     </ThemeProvider>
   );
 }

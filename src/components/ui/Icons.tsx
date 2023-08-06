@@ -16,6 +16,7 @@ const glyphMap = {
   Chat_Circle: 59757,
   Mail: 59926,
   Phone: 59969,
+  Search_Magnifying_Glass: 59986,
 };
 
 const CoolIcons = createIconSet(glyphMap, 'coolicons', assets);
