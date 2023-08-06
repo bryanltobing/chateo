@@ -1,4 +1,3 @@
-import { useHeaderHeight } from '@react-navigation/elements';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { View } from 'react-native';
@@ -11,7 +10,6 @@ import { Text } from '@/components/ui/Text';
 import { TextInput } from '@/components/ui/TextInput';
 
 export default function EmailPage() {
-  const headerHeight = useHeaderHeight();
   const safeAreaInsets = useSafeAreaInsets();
 
   const [email, setEmail] = useState('');
@@ -20,7 +18,7 @@ export default function EmailPage() {
     <>
       <Stack.Screen options={{ title: '' }} />
 
-      <KeyboardAvoidingView style={{ paddingTop: headerHeight, flex: 1 }}>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
         <ScrollView bounces={false}>
           <View style={{ paddingTop: 79, paddingHorizontal: 40, gap: 8 }}>
             <Text variant="heading2" style={{ textAlign: 'center' }}>
