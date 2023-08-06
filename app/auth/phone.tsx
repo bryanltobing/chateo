@@ -74,7 +74,9 @@ export default function PhonePage() {
             paddingHorizontal: 24,
           }}
         >
-          <Button>Continue</Button>
+          <Link asChild href="/settings/profile">
+            <Button>Continue</Button>
+          </Link>
         </View>
       </KeyboardAvoidingView>
     </>
