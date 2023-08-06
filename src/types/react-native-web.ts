@@ -3,6 +3,10 @@ declare module 'react-native' {
     hovered?: boolean;
     focused?: boolean;
   }
+
+  interface TextStyle {
+    outlineStyle?: 'none';
+  }
 }
 
 export {};

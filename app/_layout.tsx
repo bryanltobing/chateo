@@ -56,6 +56,7 @@ export default function RootLayout() {
             fontFamily: typography.primary.semiBold,
             fontSize: 18,
           },
+          headerBackTitleVisible: false,
         }}
       />
     </ThemeProvider>
