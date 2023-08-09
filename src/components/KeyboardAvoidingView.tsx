@@ -1,14 +1,20 @@
-import {
-  Platform,
-  KeyboardAvoidingView as RnKeyboardAvoidingView,
-  View,
-  ViewProps,
-} from 'react-native';
+import { ViewProps } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+
+import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
 
 export type KeyboardAvoidingViewProps = ViewProps;
 
-export const KeyboardAvoidingView = (props: KeyboardAvoidingViewProps) => {
-  const Wrapper = Platform.OS === 'ios' ? RnKeyboardAvoidingView : View;
+export const KeyboardAvoidingView = ({ style, ...props }: KeyboardAvoidingViewProps) => {
+  const keyboardHeight = useKeyboardHeight();
 
-  return <Wrapper behavior="padding" {...props} />;
+  const paddingBottomValue = useSharedValue(0);
+
+  const paddingBottomAnimatedStyle = useAnimatedStyle(() => ({
+    paddingBottom: withTiming(paddingBottomValue.value + keyboardHeight, {
+      duration: 230,
+    }),
+  }));
+
+  return <Animated.View style={[{ flex: 1 }, paddingBottomAnimatedStyle, style]} {...props} />;
 };

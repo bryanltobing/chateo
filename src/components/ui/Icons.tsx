@@ -17,6 +17,7 @@ const glyphMap = {
   Mail: 59926,
   Phone: 59969,
   Search_Magnifying_Glass: 59986,
+  Add_Plus: 59652,
 };
 
 const CoolIcons = createIconSet(glyphMap, 'coolicons', assets);

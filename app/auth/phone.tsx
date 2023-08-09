@@ -34,7 +34,7 @@ export default function PhonePage() {
     <>
       <Stack.Screen options={{ title: '' }} />
 
-      <KeyboardAvoidingView style={{ flex: 1 }}>
+      <KeyboardAvoidingView style={{ gap: 16 }}>
         <ScrollView bounces={false}>
           <View style={{ paddingTop: 79, paddingHorizontal: 40, gap: 8 }}>
             <Text variant="heading2" style={{ textAlign: 'center' }}>
@@ -74,7 +74,9 @@ export default function PhonePage() {
             paddingHorizontal: 24,
           }}
         >
-          <Button>Continue</Button>
+          <Link asChild href="/settings/profile">
+            <Button>Continue</Button>
+          </Link>
         </View>
       </KeyboardAvoidingView>
     </>

@@ -11,6 +11,7 @@ import { ListItem } from '@/components/ui/ListItem';
  */
 import { TextInput } from '@/components/ui/TextInput';
 import countries from '@/countries.json';
+import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
 
 export default function PhoneCodeModal() {
   const [search, setSearch] = useState('');
@@ -21,6 +22,8 @@ export default function PhoneCodeModal() {
   );
 
   const safeAreaInsets = useSafeAreaInsets();
+
+  const keyboardHeight = useKeyboardHeight();
 
   return (
     <>
@@ -51,7 +54,9 @@ export default function PhoneCodeModal() {
           </Link>
         )}
         estimatedItemSize={40}
-        contentContainerStyle={{ paddingBottom: safeAreaInsets.bottom }}
+        contentContainerStyle={{
+          paddingBottom: keyboardHeight !== 0 ? keyboardHeight : safeAreaInsets.bottom,
+        }}
       />
     </>
   );
