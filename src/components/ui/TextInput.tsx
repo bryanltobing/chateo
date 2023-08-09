@@ -1,4 +1,5 @@
-import { Ref, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { useFocusEffect } from 'expo-router';
+import React, { Ref, forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react';
 import {
   TextInput as RnTextInput,
   TextInputProps as RnTextInputProps,
@@ -35,6 +36,10 @@ export type TextInputProps = {
    * View style that wraps text input
    */
   inputWrapperStyle?: StyleProp<ViewStyle>;
+  /**
+   * Whether TextInput is in focused on first render
+   */
+  autoFocus?: boolean;
 } & RnTextInputProps;
 
 export const TextInput = forwardRef(
@@ -46,6 +51,7 @@ export const TextInput = forwardRef(
       disabled,
       containerStyle,
       inputWrapperStyle,
+      autoFocus,
       ...props
     }: TextInputProps,
     ref: Ref<RnTextInput | null>
@@ -57,13 +63,31 @@ export const TextInput = forwardRef(
 
     useImperativeHandle(ref, () => textInputRef.current);
 
-    const handleFocus = () => {
+    const handleFocus = useCallback(() => {
       if (!editable) {
         return;
       }
 
+      if (!autoFocus) {
+        return;
+      }
+
       textInputRef.current?.focus();
-    };
+    }, [autoFocus, editable]);
+
+    useFocusEffect(
+      useCallback(() => {
+        const timeout = setTimeout(
+          () => {
+            handleFocus();
+          },
+          // workaround for this issue https://github.com/software-mansion/react-native-screens/issues/1637
+          Platform.OS === 'ios' ? 500 : 0
+        );
+
+        return () => clearTimeout(timeout);
+      }, [handleFocus])
+    );
 
     return (
       <Pressable onPress={handleFocus} style={containerStyle}>
@@ -71,7 +95,7 @@ export const TextInput = forwardRef(
           style={[
             {
               flexDirection: 'row',
-              paddingVertical: 6,
+              paddingTop: 6,
               paddingHorizontal: 8,
               backgroundColor: colors.palette.neutralOffWhite,
               borderRadius: 4,
@@ -104,6 +128,7 @@ export const TextInput = forwardRef(
                 width: '100%',
                 ...(Platform.OS !== 'ios' ? { lineHeight: 24 } : {}),
                 color: colors.palette.neutralActive,
+                paddingBottom: 6,
               }}
               placeholderTextColor={colors.palette.neutralDisabled}
               onFocus={() => setFocused(true)}

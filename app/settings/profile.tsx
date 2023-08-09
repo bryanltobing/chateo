@@ -14,7 +14,7 @@ export default function ProfileSettingsPage() {
     <>
       <Stack.Screen options={{ title: 'Your Profile' }} />
 
-      <KeyboardAvoidingView style={{ flex: 1 }}>
+      <KeyboardAvoidingView>
         <ScrollView bounces={false} contentContainerStyle={{ paddingHorizontal: 24 }}>
           <View
             style={{ marginLeft: 'auto', marginRight: 'auto', paddingTop: 46, paddingBottom: 32 }}

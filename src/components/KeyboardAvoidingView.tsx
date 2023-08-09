@@ -1,17 +1,28 @@
-import { useHeaderHeight } from '@react-navigation/elements';
-import {
-  Platform,
-  KeyboardAvoidingView as RnKeyboardAvoidingView,
-  View,
-  ViewProps,
-} from 'react-native';
+import { Platform, View, ViewProps, useWindowDimensions } from 'react-native';
+
+import { useFixedHeaderHeight } from '@/hooks/useFixedHeaderHeight';
+import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
 
 export type KeyboardAvoidingViewProps = ViewProps;
 
-export const KeyboardAvoidingView = (props: KeyboardAvoidingViewProps) => {
-  const Wrapper = Platform.OS === 'ios' ? RnKeyboardAvoidingView : View;
+export const KeyboardAvoidingView = ({ style, ...props }: KeyboardAvoidingViewProps) => {
+  const headerHeight = useFixedHeaderHeight();
+  const keyboardHeight = useKeyboardHeight();
+  const windowDimensions = useWindowDimensions();
 
-  const headerHeight = useHeaderHeight();
-
-  return <Wrapper behavior="padding" keyboardVerticalOffset={headerHeight} {...props} />;
+  return (
+    <View
+      style={[
+        {
+          height:
+            Platform.OS === 'ios'
+              ? windowDimensions.height - keyboardHeight - headerHeight
+              : 'auto',
+          flex: Platform.OS === 'ios' ? undefined : 1,
+        },
+        style,
+      ]}
+      {...props}
+    />
+  );
 };

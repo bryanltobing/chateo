@@ -34,7 +34,7 @@ export default function PhonePage() {
     <>
       <Stack.Screen options={{ title: '' }} />
 
-      <KeyboardAvoidingView style={{ flex: 1 }}>
+      <KeyboardAvoidingView style={{ gap: 16 }}>
         <ScrollView bounces={false}>
           <View style={{ paddingTop: 79, paddingHorizontal: 40, gap: 8 }}>
             <Text variant="heading2" style={{ textAlign: 'center' }}>
