@@ -9,26 +9,35 @@ import { KeyboardAvoidingView } from '@/components/KeyboardAvoidingView';
 import { Button } from '@/components/ui/Button';
 import { Text } from '@/components/ui/Text';
 import { TextInput } from '@/components/ui/TextInput';
+import countries from '@/countries.json';
 
 export default function PhonePage() {
   const safeAreaInsets = useSafeAreaInsets();
 
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const params = useLocalSearchParams<{ flag?: string; dialCode?: string }>();
+  const params = useLocalSearchParams<{ code?: string }>();
 
   const countryData = useMemo(() => {
-    if (!params.flag || !params.dialCode) {
-      return {
-        flag: '🇮🇩',
-        phoneCode: '+62',
-      };
+    const defaultData = {
+      flag: '🇮🇩',
+      phoneCode: '+62',
+    };
+
+    if (!params.code) {
+      return defaultData;
+    }
+
+    const selectedCountry = countries.find((country) => country['name-code'] === params.code);
+
+    if (!selectedCountry) {
+      return defaultData;
     }
     return {
-      flag: params.flag,
-      phoneCode: params.dialCode,
+      flag: selectedCountry.flag,
+      phoneCode: selectedCountry['dial-code'],
     };
-  }, [params.flag, params.dialCode]);
+  }, [params.code]);
 
   return (
     <>
@@ -74,7 +83,7 @@ export default function PhonePage() {
             paddingHorizontal: 24,
           }}
         >
-          <Link asChild href="/settings/profile">
+          <Link asChild href="/auth/otp">
             <Button>Continue</Button>
           </Link>
         </View>

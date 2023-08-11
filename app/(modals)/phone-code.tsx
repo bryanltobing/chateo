@@ -41,13 +41,13 @@ export default function PhoneCodeModal() {
 
       <FlashList
         data={filteredCountries}
-        keyExtractor={(item) => item['dial-code'] + item.flag}
+        keyExtractor={(item) => item['name-code']}
         renderItem={({ item }) => (
           <Link
             asChild
             href={{
               pathname: '/auth/phone',
-              params: { flag: item.flag, dialCode: item['dial-code'] },
+              params: { code: item['name-code'] },
             }}
           >
             <ListItem text={`${item.flag} ${item['dial-code']} ${item.name}`} hSpace />

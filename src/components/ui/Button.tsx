@@ -40,7 +40,7 @@ export const Button = forwardRef(
           !!focused && focusedViewVariants[variant],
           !!props.disabled && { opacity: 0.5 },
         ]}
-        accessibilityRole="button"
+        role="button"
         ref={ref}
         {...props}
       >
