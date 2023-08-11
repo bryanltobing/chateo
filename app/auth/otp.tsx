@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { ScrollView, View, ViewStyle, StyleSheet } from 'react-native';
+import { ScrollView, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { CodeInput } from '@/components/CodeInput';
