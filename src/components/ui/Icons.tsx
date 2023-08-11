@@ -18,6 +18,7 @@ const glyphMap = {
   Phone: 59969,
   Search_Magnifying_Glass: 59986,
   Add_Plus: 59652,
+  Arrow_Left_LG: 59676,
 };
 
 const CoolIcons = createIconSet(glyphMap, 'coolicons', assets);

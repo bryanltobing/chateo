@@ -33,7 +33,9 @@ const baseStyle: StyleProp<TextStyle> = [
 ];
 
 const textVariants = {
-  heading1: [{ fontSize: 32, fontFamily: typography.primary.bold }] satisfies StyleProp<TextStyle>,
+  heading1: [
+    { fontSize: 32, lineHeight: 40, fontFamily: typography.primary.bold },
+  ] satisfies StyleProp<TextStyle>,
   heading2: [{ fontSize: 24, fontFamily: typography.primary.bold }] satisfies StyleProp<TextStyle>,
   subHeading1: [{ fontSize: 18, lineHeight: 30 }] satisfies StyleProp<TextStyle>,
   subHeading2: [{ fontSize: 16, lineHeight: 28 }] satisfies StyleProp<TextStyle>,
