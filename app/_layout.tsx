@@ -59,6 +59,7 @@ export default function RootLayout() {
           headerShadowVisible: false,
         }}
       >
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(modals)/phone-code" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
