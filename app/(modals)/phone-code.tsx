@@ -11,7 +11,6 @@ import { ListItem } from '@/components/ui/ListItem';
  */
 import { TextInput } from '@/components/ui/TextInput';
 import countries from '@/countries.json';
-import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
 
 export default function PhoneCodeModal() {
   const [search, setSearch] = useState('');
@@ -22,8 +21,6 @@ export default function PhoneCodeModal() {
   );
 
   const safeAreaInsets = useSafeAreaInsets();
-
-  const keyboardHeight = useKeyboardHeight();
 
   return (
     <>
@@ -40,6 +37,7 @@ export default function PhoneCodeModal() {
       />
 
       <FlashList
+        keyboardDismissMode="on-drag"
         data={filteredCountries}
         keyExtractor={(item) => item['name-code']}
         renderItem={({ item }) => (
@@ -55,7 +53,7 @@ export default function PhoneCodeModal() {
         )}
         estimatedItemSize={40}
         contentContainerStyle={{
-          paddingBottom: keyboardHeight !== 0 ? keyboardHeight : safeAreaInsets.bottom,
+          paddingBottom: safeAreaInsets.bottom,
         }}
       />
     </>
