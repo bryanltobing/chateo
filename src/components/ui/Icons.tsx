@@ -19,6 +19,8 @@ const glyphMap = {
   Search_Magnifying_Glass: 59986,
   Add_Plus: 59652,
   Arrow_Left_LG: 59676,
+  Users: 60065,
+  More_Horizontal: 59945,
 };
 
 const CoolIcons = createIconSet(glyphMap, 'coolicons', assets);
