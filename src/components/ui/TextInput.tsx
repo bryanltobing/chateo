@@ -116,6 +116,7 @@ export const TextInput = forwardRef(
               <Icons
                 name={startIcon}
                 color={props.value ? colors.palette.neutralActive : colors.palette.neutralDisabled}
+                style={{ paddingBottom: 6 }}
               />
             )}
 
@@ -141,6 +142,7 @@ export const TextInput = forwardRef(
               <Icons
                 name={endIcon}
                 color={props.value ? colors.palette.neutralActive : colors.palette.neutralDisabled}
+                style={{ paddingBottom: 6 }}
               />
             )}
           </View>
