@@ -12,7 +12,7 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      initialRouteName="contacts"
+      initialRouteName="chats"
       screenOptions={{
         headerTitleAlign: 'left',
         headerTintColor: colors.palette.neutralActive,

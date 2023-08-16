@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ScrollView, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -55,9 +55,11 @@ export default function OtpPage() {
 
         <CodeInput value={otpValue} />
 
-        <Button variant="ghost" style={{ marginTop: 77 }}>
-          Resend Code
-        </Button>
+        <Link asChild href="/(tabs)/chats">
+          <Button variant="ghost" style={{ marginTop: 77 }}>
+            Resend Code
+          </Button>
+        </Link>
       </ScrollView>
 
       <View
