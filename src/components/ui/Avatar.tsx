@@ -1,5 +1,5 @@
 import React, { Ref, forwardRef } from 'react';
-import { Image, Pressable, PressableProps, View, ViewStyle } from 'react-native';
+import { Image, Pressable, PressableProps, StyleProp, View, ViewStyle } from 'react-native';
 
 import { Icons } from './Icons';
 import { Text } from './Text';
@@ -26,6 +26,10 @@ export type AvatarProps = {
    * @default
    */
   state?: State;
+  /**
+   * style
+   */
+  style?: StyleProp<ViewStyle>;
 } & PressableProps;
 
 const OnlineBadge = () => (
@@ -40,7 +44,10 @@ const OnlineBadge = () => (
 );
 
 export const Avatar = forwardRef(
-  ({ type, state = 'noStory', imageUri, name = 'NN', ...props }: AvatarProps, ref: Ref<View>) => {
+  (
+    { type, state = 'noStory', imageUri, name = 'NN', style, ...props }: AvatarProps,
+    ref: Ref<View>
+  ) => {
     const showStory = state === 'story' || state === 'noStory';
     const isOnline = state === 'online';
 
@@ -56,7 +63,7 @@ export const Avatar = forwardRef(
     return (
       <Pressable
         ref={ref}
-        style={({ pressed }) => [pressableStyle, { opacity: pressed ? 0.5 : 1 }]}
+        style={({ pressed }) => [pressableStyle, { opacity: pressed ? 0.5 : 1 }, style]}
         {...props}
       >
         <View
