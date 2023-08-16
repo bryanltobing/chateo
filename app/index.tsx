@@ -1,28 +1,44 @@
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Button } from '@/components/Button';
+import { HomeIllustration } from '@/components/illustrations/HomeIllustration';
+import { Button } from '@/components/ui/Button';
+import { Text } from '@/components/ui/Text';
 
 export default function HomePage() {
+  const safeAreaInsets = useSafeAreaInsets();
+
   return (
     <>
-      <Stack.Screen options={{ title: 'Urlang' }} />
+      <Stack.Screen options={{ headerShown: false }} />
 
-      <View style={styles.container}>
-        <Text>Open up app/_layout.tsx to start working on your app!</Text>
-        <Button />
+      <View
+        style={[
+          {
+            paddingBottom: safeAreaInsets.bottom === 0 ? 24 : safeAreaInsets.bottom,
+            paddingTop: safeAreaInsets.top + 45,
+            flex: 1,
+            paddingHorizontal: 24,
+          },
+        ]}
+      >
+        <ScrollView bounces={false} contentContainerStyle={{ gap: 42 }}>
+          <HomeIllustration style={{ marginLeft: 'auto', marginRight: 'auto' }} />
+          <Text variant="heading2" style={{ textAlign: 'center' }}>
+            Connect easily with your family and friends over countries
+          </Text>
+        </ScrollView>
+
+        <View style={{ gap: 18 }}>
+          <Text style={{ textAlign: 'center' }}>Terms & Privacy Policy</Text>
+          <Link href="/auth" asChild>
+            <Button variant="primary">Getting Started</Button>
+          </Link>
+        </View>
         <StatusBar style="auto" />
       </View>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
