@@ -1,9 +1,27 @@
 import { memo, useCallback } from 'react';
 import { Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 
+import { Icons } from './Icons';
 import { Text } from './Text';
 
 import { colors } from '@/theme/colors';
+
+export type BackspaceProps = { style?: ViewStyle } & PressableProps;
+
+export const Backspace = memo(({ style, ...props }: BackspaceProps) => {
+  return (
+    <Pressable
+      style={({ pressed, hovered }) => [
+        numberStyle,
+        (pressed || hovered) && { backgroundColor: colors.palette.neutralLine },
+        style,
+      ]}
+      {...props}
+    >
+      <Icons name="Arrow_Left_LG" size={32} style={{ textAlign: 'center' }} />
+    </Pressable>
+  );
+});
 
 export type NumberProps = {
   number: number;
@@ -25,7 +43,7 @@ export const Number = memo(({ number, style, onPress }: NumberProps) => {
       ]}
       onPress={handlePressNumber}
     >
-      <Text variant="heading2" style={{ textAlign: 'center' }}>
+      <Text variant="heading2" style={{ textAlign: 'center' }} selectable={false}>
         {number}
       </Text>
     </Pressable>

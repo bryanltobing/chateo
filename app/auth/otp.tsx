@@ -4,9 +4,8 @@ import { ScrollView, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { CodeInput } from '@/components/CodeInput';
-import { Backspace } from '@/components/ui/Backspace';
 import { Button } from '@/components/ui/Button';
-import { Number } from '@/components/ui/Number';
+import { Number, Backspace } from '@/components/ui/Number';
 import { Text } from '@/components/ui/Text';
 import { colors } from '@/theme/colors';
 
